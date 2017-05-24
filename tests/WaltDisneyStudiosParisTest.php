@@ -1,8 +1,5 @@
 <?php
 
-use Laravel\Lumen\Testing\DatabaseMigrations;
-use Laravel\Lumen\Testing\DatabaseTransactions;
-
 class WaltDisneyStudiosParisTest extends TestCase
 {
     public function testGetWaitTimes()
