@@ -1,6 +1,5 @@
 <?php
-use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Client;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
