@@ -23,6 +23,10 @@ API root will be hosted at localhost:8080.
 
 If you want to change the port you can edit ```docker-compose.yml``` port from 8080 to your liking.
 
+## Documentation
+
+[Documentation](documentation.md)
+
 ## Built With
 
 * Lumen
