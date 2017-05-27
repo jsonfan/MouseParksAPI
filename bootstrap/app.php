@@ -97,8 +97,6 @@ $app->register(Illuminate\Redis\RedisServiceProvider::class);
  * CONFIG
  */
 
-
-
  if (getenv('REDIS_URL')) {
      $url = parse_url(getenv('REDIS_URL'));
 
@@ -113,8 +111,7 @@ config(['database.redis'=>
                         'port' => env('REDIS_PORT', 6379),
                         'database' => env('REDIS_DATABASE', 0),
                         'password' => env('REDIS_PASSWORD', null) ]
-        ],
-       'log' => 'errorlog']);
+        ]]);
 
 
 $app->group(['namespace' => 'App\Http\Controllers'], function ($app) {
