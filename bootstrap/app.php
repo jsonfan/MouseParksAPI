@@ -97,14 +97,6 @@ $app->register(Illuminate\Redis\RedisServiceProvider::class);
  * CONFIG
  */
 
- if (getenv('REDIS_URL')) {
-     $url = parse_url(getenv('REDIS_URL'));
-
-     putenv('REDIS_HOST='.$url['host']);
-     putenv('REDIS_PORT='.$url['port']);
-     putenv('REDIS_PASSWORD='.$url['pass']);
- }
-
 config(['database.redis'=>
         [ 'cluster' => env('REDIS_CLUSTER', false),
           'default' => ['host' => env('REDIS_HOST', '127.0.0.1'),
