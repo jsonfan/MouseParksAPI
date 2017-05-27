@@ -11,7 +11,7 @@ Valid parkName requests:
 | Hollywood Studios| Orlando, FL | hlyst|
 | Animal Kingdom| Orlando, FL | ak|
 | Shanghai Disneyland | Shanghai, China | sh|
-| Hong Kong Disneyland | Hong Kong, China | mk|
+| Hong Kong Disneyland | Hong Kong, China | hk|
 | Disneyland Paris | Paris, France | dlp|
 | Walt Disney Studios | Paris, France | wdsp |
 
