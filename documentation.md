@@ -41,7 +41,7 @@ Valid parkName requests:
 | Park | Location | {shortName}|
 | ------------- |:-------------:| --------- |
 | Disneyland    | Anaheim, CA | dlusa |
-| California Adventure| Anaheim, CA | caladv |  
+| California Adventure| Anaheim, CA | dca |  
 | Walt Disney World| Orlando, FL | mk|
 | Epcot| Orlando, FL| epcot |
 | Hollywood Studios| Orlando, FL | hlyst|
