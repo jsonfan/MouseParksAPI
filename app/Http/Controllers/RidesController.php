@@ -5,16 +5,10 @@ namespace App\Http\Controllers;
 use Cache;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Client;
-/**
- * [RidesController description]
- */
+
 class RidesController extends DisneyParkController
 {
-  /**
-   * [BASE_URI description]
-   * @var string
-   */
-  protected $BASE_URI = "https://api.wdpro.disney.go.com/global-pool-override-B/facility-service/attractions/";
+  private $BASE_URI = "https://api.wdpro.disney.go.com/global-pool-override-B/facility-service/attractions/";
 
   public function show($rideId, $region)
   {

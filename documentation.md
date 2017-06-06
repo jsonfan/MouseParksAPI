@@ -1,8 +1,44 @@
+**Parks**
+----
+* **URL**
+
+  /parks
+
+* **Method:**
+*
+  `GET`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `[  {
+    "name": "Disneyland",
+    "short_name": "dlusa",
+    "park_id": "330339",
+    "resort": "dlr",
+    "region": "us",
+    "city": "Anaheim",
+    "country": "USA",
+    "is_intl": 0
+  }, ...]`
+
+* **Error Response:**
+
+  * **Code:** 404 <br />
+    **Content:** `404 page`
+
+
+* **Sample Call:**
+
+  ``curl -i -H "Accept: application/json" -H "Content-Type: application/json" localhost:8080/parks``
+
+
+
 **Wait Times**
 ----
 Valid parkName requests:
 
-| Park | Location | {parkName}|
+| Park | Location | {shortName}|
 | ------------- |:-------------:| --------- |
 | Disneyland    | Anaheim, CA | dlusa |
 | California Adventure| Anaheim, CA | caladv |  
@@ -17,7 +53,7 @@ Valid parkName requests:
 
 * **URL**
 
-  /wait/:parkName
+  /parks/:shortName/wait
 
 * **Method:**
 *
@@ -36,33 +72,31 @@ Valid parkName requests:
 
 * **Sample Call:**
 
-  ``curl -i -H "Accept: application/json" -H "Content-Type: application/json" localhost:8080/wait/dlusa``
+  ``curl -i -H "Accept: application/json" -H "Content-Type: application/json" localhost:8080/parks/dlusa/wait``
 
 
 
 
-  **Attraction Info**
-  ----
+**Attraction Info**
+----
 
-  * **URL**
+* **URL**
 
-    /ride/:rideId/region/:region
+  /ride/:rideId/region/:region
 
-  * **Method:**
-  *
-    `GET`
+* **Method:**
+*
+  `GET`
 
-  * **Success Response:**
+* **Success Response:**
 
-    * **Code:** 200 <br />
-      **Content:** `{ links, id, name, urlFriendlyId, descriptions, admissionRequired, disneyOwned, disneyOperated, coordiantes, media, type, webLinks, facets, ancestorDestination, accessibilities, services, fastPassPlus, fastPass, riderSwapAvailable }`
+  * **Code:** 200 <br />
+    **Content:** `{ links, id, name, urlFriendlyId, descriptions, admissionRequired, disneyOwned, disneyOperated, coordiantes, media, type, webLinks, facets, ancestorDestination, accessibilities, services, fastPassPlus, fastPass, riderSwapAvailable }`
 
-  * **Error Response:**
+* **Error Response:**
+  * **Code:** 404 <br />
+    **Content:** `404 page`
 
-    * **Code:** 404 <br />
-      **Content:** `404 page`
-
-
-  * **Sample Call:**
+* **Sample Call:**
 
     ``curl -i -H "Accept: application/json" -H "Content-Type: application/json" localhost:8080/ride/attMeetDroidFriends;entityType=Attraction;destination=shdr/region/cn``

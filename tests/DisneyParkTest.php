@@ -11,4 +11,13 @@ class DisneyParkTest extends TestCase
     {
         $this->assertTrue(true);
     }
+
+    public function testGetBadWaitTimes()
+    {
+      $response = $this->call('GET', '/parks/badreq/wait');
+
+      $this->assertEquals(404, $response->status());
+    }
+
+
 }

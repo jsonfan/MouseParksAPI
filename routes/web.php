@@ -15,21 +15,7 @@ $app->get('/', function () use ($app) {
   return 'Welcome to MouseParks API';
 });
 
-$app->group(['prefix' => 'wait'], function () use ($app) {
-  $app->get('dlusa', 'DisneylandUSAController@getWaitTimes');
-  $app->get('caladv', 'CaliforniaAdventureController@getWaitTimes');
-  $app->get('ak', 'AnimalKingdomController@getWaitTimes');
-  $app->get('epcot', 'EpcotController@getWaitTimes');
-  $app->get('hlyst', 'HollywoodStudiosController@getWaitTimes');
-  $app->get('mk', 'MagicKingdomController@getWaitTimes');
-
-  $app->group(['namespace' => 'DisneyIntl'], function() use ($app) {
-    $app->get('sh', 'ShanghaiDisneylandController@getWaitTimes');
-    $app->get('hk', 'HongKongDisneylandController@getWaitTimes');
-    $app->get('dlp', 'DisneylandParisController@getWaitTimes');
-    $app->get('wdsp', 'WaltDisneyStudiosParisController@getWaitTimes');
-  });
-
-});
+$app->get('/parks', 'DisneyParkController@index');
+$app->get('/parks/{shortName}/wait', 'DisneyParkController@getWaitTimes');
 
 $app->get('/ride/{rideId}/region/{region}', 'RidesController@show');
