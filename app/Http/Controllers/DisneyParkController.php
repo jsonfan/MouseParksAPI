@@ -24,14 +24,9 @@ class DisneyParkController extends BaseController
       $park = Park::where('short_name', $shortName)->firstOrFail();
       $this->park = $park;
 
-      if($this->park->is_intl) {
-        $result = $this->getParkWaitFromCacheIntl();
-      } else {
-        $result = $this->getParkWaitFromCache();
-      }
+      $result = $this->getParkWaitFromCache($this->park->is_intl);
 
-      return response($result)
-                ->header('Content-Type', 'application/json');
+      return response()->json($result);
     }
 
     protected function getTokenFromCache()
@@ -60,13 +55,16 @@ class DisneyParkController extends BaseController
       return $result['access_token'];
     }
 
-    private function getParkWaitFromCache()
+    private function getParkWaitFromCache($isIntl)
     {
+      $URI = $isIntl ? "https://api.wdpro.disney.go.com/facility-service/theme-parks/{$this->park->park_id};destination={$this->park->resort}/wait-times?region={$this->park->region}"
+              : "https://api.wdpro.disney.go.com/facility-service/theme-parks/{$this->park->park_id}/wait-times";
+
       $accessToken = $this->getTokenFromCache();
 
-      $waitTimes = Cache::remember($this->park->park_id, 5, function() use ($accessToken) {
+      $waitTimes = Cache::remember($this->park->park_id, 5, function() use ($accessToken, $URI) {
         $client = new Client();
-        $result = $client->request('GET', "https://api.wdpro.disney.go.com/facility-service/theme-parks/{$this->park->park_id}/wait-times", [
+        $result = $client->request('GET', $URI, [
           'headers' => [
             'Authorization' => "BEARER {$accessToken}",
             'Accept'        => 'application/json'
@@ -75,28 +73,9 @@ class DisneyParkController extends BaseController
 
         $result = json_decode($result,true);
         $result['region'] = $this->park->region;
-
-        return $result;
-      });
-
-      return $waitTimes;
-    }
-
-    private function getParkWaitFromCacheIntl()
-    {
-      $accessToken = $this->getTokenFromCache();
-
-      $waitTimes = Cache::remember($this->park->park_id, 5, function() use ($accessToken) {
-        $client = new Client();
-        $result = $client->request('GET', "https://api.wdpro.disney.go.com/facility-service/theme-parks/{$this->park->park_id};destination={$this->park->resort}/wait-times?region={$this->park->region}", [
-          'headers' => [
-            'Authorization' => "BEARER {$accessToken}",
-            'Accept'        => 'application/json'
-          ]
-        ])->getBody()->getContents();
-
-        $result = json_decode($result,true);
-        $result['region'] = $this->park->region;
+        $result['name'] = $this->park->name;
+        $result['city'] = $this->park->city;
+        $result['country'] = $this->park->country;
 
         return $result;
       });
