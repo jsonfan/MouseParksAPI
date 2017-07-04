@@ -13,7 +13,9 @@ class DisneylandUSATest extends TestCase
     {
       $this->json('GET', '/parks/dlusa/wait')
         ->seeJson([
-          'name' => 'Matterhorn Bobsleds'
+          'name' => 'Matterhorn Bobsleds',
+          'type' => 'Attraction',
+          'id' => '353377;entityType=Attraction'
         ])->seeStatusCode(200);
     }
 }

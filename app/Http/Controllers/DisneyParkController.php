@@ -32,7 +32,6 @@ class DisneyParkController extends BaseController
     protected function getTokenFromCache()
     {
       if (!Cache::has('access_token')) {
-        //store token in cache
         $accessToken = $this->getTokenFromAuthAPI();
         Cache::add('access_token', $accessToken, 14);
       }
